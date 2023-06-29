@@ -1,18 +1,23 @@
 import { ToDo } from '~/utils/types';
 import { TodoActions } from '../actions/todoActions';
 
+export type Filters = 'all' | 'completed' | 'uncompleted'
+
 type TodoReducerState = {
   todos: ToDo[];
+  filter: Filters;
 };
 export enum TODO_ACTIONS {
   ADD_NEW_TODO = 'todo/ADD_NEW_TODO',
   REMOVE_TODO = 'todo/REMOVE_TODO',
   CHECK_TODO = 'todo/CHECK_TODO',
   REMOVE_ALL_TODOS = 'todo/REMOVE_ALL_TODOS',
+  SET_FILTER = 'todo/SET_FILTER',
 }
 
 const initialValue = {
   todos: [],
+  filter: 'all'
 } as TodoReducerState;
 
 export default (
@@ -21,7 +26,7 @@ export default (
 ) => {
   switch (action.type) {
     case TODO_ACTIONS.ADD_NEW_TODO: {
-      console.log(action.payload)
+      console.log(action.payload);
       return { ...state, todos: [...state.todos, action.payload] };
     }
     case TODO_ACTIONS.REMOVE_TODO: {
@@ -43,7 +48,10 @@ export default (
     case TODO_ACTIONS.REMOVE_ALL_TODOS: {
       return { ...state, todos: [] };
     }
-    default: 
-      return state
+    case TODO_ACTIONS.SET_FILTER: {
+      return {...state, filter: action.payload}
+    }
+    default:
+      return state;
   }
 };

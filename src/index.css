@@ -1,12 +1,31 @@
-:root{
+:root {
   --text-color: #000;
   --text-color-inverted: #fff;
 
-  --border-color: #453838;
+  --border-color: #e5e5e5;
 
-  --background-color: #fff2d1;
+  --secondary-color: #fca311;
+
+  --background-color: #000000;
 
   --completed-color: #00a025;
 
   --error-color: #b51414;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'JetBrains Mono', monospace;
+}
+div#root {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-width: 100vw;
+  min-height: 100vh;
+
+  background-color: var(--background-color);
 }

@@ -1,12 +1,13 @@
 import { Action, ActionWithPayload, ToDo } from '~/utils/types';
 
-import { TODO_ACTIONS } from '../reducers/todoReducer';
+import { Filters, TODO_ACTIONS } from '../reducers/todoReducer';
 
 export type TodoActions =
   | ActionWithPayload<typeof TODO_ACTIONS.ADD_NEW_TODO, ToDo>
   | ActionWithPayload<typeof TODO_ACTIONS.REMOVE_TODO, number>
   | ActionWithPayload<typeof TODO_ACTIONS.CHECK_TODO, number>
-  | Action<typeof TODO_ACTIONS.REMOVE_ALL_TODOS>;
+  | Action<typeof TODO_ACTIONS.REMOVE_ALL_TODOS>
+  | ActionWithPayload<typeof TODO_ACTIONS.SET_FILTER, Filters>
 
 export const addNewTodo = (
   todo: ToDo
@@ -31,3 +32,8 @@ export const removeAllTodos = (): Action<
 > => ({
   type: TODO_ACTIONS.REMOVE_ALL_TODOS,
 });
+
+export const setFilter = (filter: 'all' | 'completed' | 'uncompleted'): ActionWithPayload<typeof TODO_ACTIONS.SET_FILTER, Filters> => ({
+  type: TODO_ACTIONS.SET_FILTER,
+  payload: filter
+})
